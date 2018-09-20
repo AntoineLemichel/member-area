@@ -17,13 +17,18 @@ $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
           if ($_POST['password'] == $_POST['password_confirme']) {
               if ($resultat_pseudo['pseudo'] != $_POST['pseudo']) {
                 if($resultat_email['email'] != $_POST['email']){
-                  $req_inscription = $bdd->prepare('INSERT INTO user(pseudo, email, password) VALUES(:pseudo, :email, :password)');
-                  $req_inscription->execute(array(
-                    'pseudo' => htmlspecialchars($_POST['pseudo']),
-                    'email' => $_POST['email'],
-                    'password' => $password
-                  ));
-                  header('Location: ../index.php');
+                  if(preg_match("#@#", $_POST['email'])){
+                    $req_inscription = $bdd->prepare('INSERT INTO user(pseudo, email, password) VALUES(:pseudo, :email, :password)');
+                    $req_inscription->execute(array(
+                      'pseudo' => htmlspecialchars($_POST['pseudo']),
+                      'email' => $_POST['email'],
+                      'password' => $password
+                    ));
+                    header('Location: ../index.php');
+                  } else {
+                    echo "Le champs email n'est pas bon.";
+                  }
+                 
                 } else {
                   echo "L'email existe déjà";
                 }
