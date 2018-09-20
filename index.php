@@ -50,19 +50,19 @@
     <div class="ui container-connexion">
 
 
-      <form class="ui form container" method="POST" action="">
+      <form class="ui form container" method="POST" action="user/connexion_user.php">
         <p class="ui header">Connexion :</p>
         <div class="field required">
           <label>Pseudo : </label>
-          <input type="text" name="pseudo" placeholder="Pseudo">
+          <input type="text" name="pseudo" placeholder="Pseudo" value="<?php echo $_COOKIE['pseudo'];?>">
         </div>
         <div class="field required">
           <label>Mot de passe :</label>
-          <input type="password" name="password" placeholder="Mot de passe">
+          <input type="password" name="password" placeholder="Mot de passe" value="<?php echo $_COOKIE['password'];?>">
         </div>
         <div class="field">
           <div class="ui checkbox">
-            <input type="checkbox" tabindex="0">
+            <input type="checkbox" tabindex="0" name="automatique">
             <label>Connexion automatique</label>
           </div>
         </div>
