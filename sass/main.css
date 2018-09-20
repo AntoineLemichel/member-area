@@ -1,11 +1,12 @@
-%basic-border {
+.container-inscription, .container-connexion {
   border: 1px solid black;
   width: 400px !important;
   border-radius: 7px;
   padding: 9px;
   margin: 50px auto;
 }
-%basic-input {
+
+.container-inscription input, .container-connexion input {
   margin: auto;
   padding: 5px;
 }
@@ -20,20 +21,9 @@ html, body {
 }
 
 .container-principal {
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: auto auto;
+  -ms-grid-columns: auto auto;
+      grid-template-columns: auto auto;
 }
-
-.container-inscription {
-  @extend %basic-border;
-  input {
-    @extend %basic-input;
-  }
-}
-
-.container-connexion {
-  @extend %basic-border;
-  input {
-    @extend %basic-input;
-  }
-}
+/*# sourceMappingURL=main.css.map */
