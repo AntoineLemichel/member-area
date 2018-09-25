@@ -6,6 +6,7 @@ $req_user->execute(array(
   'pseudo' => $_POST['pseudo']
 ));
 $resultat_user = $req_user->fetch();
+$req = $bdd->query('SELECT groupe FROM groupe WHERE id_user='.$resultat_user['id'])->fetch();
 if(isset($_POST['pseudo']) and isset($_POST['password'])){
   if(!empty($_POST['pseudo']) and !empty($_POST['password'])){
     if(password_verify($_POST['password'], $resultat_user['password']) and $resultat_user['pseudo'] != $_POST['pseudo'] or $_COOKIE['password'] == $resultat_user['password']){
@@ -31,7 +32,7 @@ if(isset($_POST['automatique'])){
 
 
 if(isset($_SESSION['pseudo'])){
- echo "Bonjour " . $_SESSION['pseudo'] . "<br>";
+ echo "Bonjour " . $req['groupe']. " " . $_SESSION['pseudo'] . "<br>";
  echo "<a href='destroy_session.php'>Déconnexion</a>";
 }
 
